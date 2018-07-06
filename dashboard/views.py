@@ -33,7 +33,8 @@ def home(request):
 
 
 def approval(request):
-    leaves = userPosts.objects.all().order_by('-created_date')
+    leaves = request.user.userposts_set.all().order_by('-created_date')
+  #  leaves = userPosts.objects.all().order_by('-created_date')
     context = {
         'leaves': leaves,
     }
@@ -44,10 +45,22 @@ def approval(request):
 
 
 
-class applyleave(generic.CreateView):
+'''class applyleave(generic.CreateView):
 
     form_class = PostForm
     template_name = 'applyleave.html'
-    success_url = reverse_lazy('dashboard:approval')
+    success_url = reverse_lazy('dashboard:approval')'''
+
+def applyleave(request):
+    if request.method== 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid:
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            return redirect('dashboard:approval')
+    else:
+        form = PostForm()
+        return render(request, 'applyleave.html', {'form': form})
 
 

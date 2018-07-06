@@ -8,6 +8,6 @@ urlpatterns = [
     path('profileview/', views.profileview, name='profileview'),
     path('home/',views.home,name='home'),
     path('approval/', views.approval, name='approval'),
-    path('applyleave/', views.applyleave.as_view(), name='applyleave'),
+    path('applyleave/', views.applyleave, name='applyleave'),
 
 ]

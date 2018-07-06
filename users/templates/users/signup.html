@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<div class="login-page">
+  <h1>Sign up</h1>
+    <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+<!--
+    {{ form.as_p }}
+-->
+        <div class="form">
+            {% if form.errors %}
+          <ul class="errorlist nonfield"><li>Please enter a correct username and password. Note that both fields may be case-sensitive.</li></ul>
+          {% endif %}
+            {% for field in form %}
+
+            <div class="tag">
+                {{ field.label_tag}}
+            </div>
+            <div class="field">
+                {{ field }}
+            </div>
+            {% endfor %}
+          <br>
+
+        <button type="submit">Sign up</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'dashboard/sidebar.html' %}
+
+{% block title %}Profile View{% endblock %}
+
+{% block mainpage %}
+    <div id="page-wrapper">
+      <div id="page-inner">
+        <h1>Profile View</h1>
+        <h3>Hi {{user.username}}</h3>
+        <br>
+        {% if user.image %}
+        <img src="{{ user.image.url }}" width="300" height="300">
+        {% endif %}
+        <br>
+        {% if user.resume %}
+        <a href="{{ user.resume.url }}" >Resume-{{user.username}}</a>
+        {% endif %}
+
+      </div>
+    </div>
+{% endblock %}
+
+{% block profileactive %}
+
+
+<li class="active-link">
+                      <a href="{% url 'dashboard:profileview' %}"><i class="fa fa-qrcode "></i>Profile View</a>
+                    </li>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'dashboard/sidebar.html' %}
+
+{% block title %}Birthday List{% endblock %}
+
+
+{% block mainpage %}
+
+<div id="page-wrapper">
+  <div id="page-inner">
+  <h2>USER DETAILS</h2>
+<ul>
+    {% for user in users %}
+    <li>
+        {{ user.username }}
+    </li>
+    {% endfor %}
+</ul>
+  </div>
+</div>
+
+{% endblock %}
+
+
+{% block birthdaylistactive %}
+
+
+<li class="active-link">
+                      <a href="{% url 'dashboard:birthday_list' %}"><i class="fa fa-qrcode "></i>Birthday List</a>
+                    </li>
+
+{% endblock %}
